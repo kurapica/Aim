@@ -1,0 +1,17 @@
+## Interface: 90002
+## Title: Aim
+## Author: kurapica125@outlook.com
+## Version: r001
+## Notes: A skin supported name plate
+## Dependencies: Scorpio.Unit
+## DefaultState: Enabled
+## LoadOnDemand: 0
+
+# Core
+Aim.lua
+
+# Indicator
+QuestIndicator.lua
+
+# Skin
+DefaultSkin.lua
