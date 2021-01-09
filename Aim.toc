@@ -12,6 +12,7 @@ Aim.lua
 
 # Indicator
 QuestIndicator.lua
+ClassPowerIndicator.lua
 
 # Skin
 DefaultSkin.lua

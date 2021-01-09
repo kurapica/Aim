@@ -11,6 +11,8 @@ Scorpio           "Aim"                              "1.0.0"
 
 namespace "Aim"
 
+import "System.Reactive"
+
 -----------------------------------------------------------
 -- Template Class
 -----------------------------------------------------------
@@ -68,13 +70,16 @@ __Async__()
 function OnNamePlateCreated(self, base)
     Next()
 
-    local frame                 = base.UnitFrame
-    if frame and not _Hooked[frame] then
-        _Hooked[frame]          = true
+    repeat
+        local frame             = base.UnitFrame
+        if frame and not _Hooked[frame] then
+            _Hooked[frame]      = true
+            frame:Hide()
+            frame:HookScript("OnShow", frame.Hide)
+        end
 
-        frame.Show              = frame.Hide
-        frame:Hide()
-    end
+        Next()
+    until frame
 end
 
 __SystemEvent__()
