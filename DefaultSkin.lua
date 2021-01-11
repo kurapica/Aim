@@ -10,9 +10,14 @@ Scorpio           "Aim.Skin.Default"                 "1.0.0"
 --========================================================--
 
 -----------------------------------------------------------
+-- Aura Panel Icon
+-----------------------------------------------------------
+class "AimAuraPanelIcon"        { Scorpio.Secure.UnitFrame.AuraPanelIcon }
+
+-----------------------------------------------------------
 -- SHARE SETTINGS
 -----------------------------------------------------------
-BORDER_SIZE                     = 2
+BORDER_SIZE                     = 1
 BAR_HEIGHT                      = 3
 ICON_BORDER_SIZE                = 1
 
@@ -47,6 +52,18 @@ SHARE_STATUSBAR_SKIN            = {
     },
 }
 
+AURA_PANEL_PLAYER_LOCATION      = { Anchor("BOTTOM", 0, 8, "HealthBar", "TOP") }
+AURA_PANEL_NON_PLAYER_LOCATION  = { Anchor("BOTTOM", 0, 4, "NameLabel", "TOP") }
+
+AURA_PANEL_ICON_DEBUFF_COLOR    = {
+    ["none"]                    = Color(0.80, 0, 0),
+    ["Magic"]                   = Color.MAGIC,
+    ["Curse"]                   = Color.CURSE,
+    ["Disease"]                 = Color.DISEASE,
+    ["Poison"]                  = Color.POISON,
+    [""]                        = DebuffTypeColor["none"],
+}
+
 -----------------------------------------------------------
 -- Default Indicator and Style settings
 -----------------------------------------------------------
@@ -59,7 +76,45 @@ Style.UpdateSkin("Default",     {
         autoFullValue           = true,
         statusBarColor          = Wow.ClassPowerColor(),
         backgroundFrame         = {
-            backdropBorderColor = Wow.FromUIProperty("Activated"):Map(function(val) return val and Color.WHITE or  Color.BLACK end),
+            backdropBorderColor = Wow.FromUIProperty("Activated"):Map(function(val) return val and Color.WHITE or Color.BLACK end),
+        },
+    },
+    [AimAuraPanelIcon]          = {
+        backdrop                = {
+            edgeFile            = [[Interface\Buttons\WHITE8x8]],
+            edgeSize            = BORDER_SIZE,
+        },
+        backdropBorderColor     = Wow.FromPanelProperty("AuraDebuff"):Map(function(dtype) return AURA_PANEL_ICON_DEBUFF_COLOR[dtype] or Color.WHITE end),
+
+        -- Aura Icon
+        IconTexture             = {
+            drawLayer           = "BORDER",
+            location            = { Anchor("TOPLEFT", BORDER_SIZE, -BORDER_SIZE), Anchor("BOTTOMRIGHT", -BORDER_SIZE, BORDER_SIZE) },
+            file                = Wow.FromPanelProperty("AuraIcon"),
+            texCoords           = RectType(0.1, 0.9, 0.1, 0.9),
+        },
+
+        -- Aura Count
+        Label                   = {
+            drawLayer           = "OVERLAY",
+            fontObject          = NumberFontNormal,
+            location            = { Anchor("BOTTOMRIGHT", -1, 0) },
+            text                = Wow.FromPanelProperty("AuraCount"):Map(function(val) return val and val > 1 and val or "" end),
+        },
+
+        -- Stealable
+        MiddleBGTexture         = {
+            drawLayer           = "OVERLAY",
+            file                = [[Interface\TargetingFrame\UI-TargetingFrame-Stealable]],
+            alphaMode           = "ADD",
+            location            = { Anchor("TOPLEFT", -BORDER_SIZE, BORDER_SIZE), Anchor("BOTTOMRIGHT", BORDER_SIZE, -BORDER_SIZE) },
+            visible             = Wow.FromPanelProperty("AuraStealable"),
+        },
+
+        -- Duration
+        CooldownLabel           = {
+            fontObject          = NumberFontNormal,
+            cooldown            = Wow.FromPanelProperty("AuraCooldown"),
         },
     },
 
@@ -127,6 +182,10 @@ Style.UpdateSkin("Default",     {
         CastBar                 = {
             SHARE_STATUSBAR_SKIN,
 
+            backgroundFrame     = {
+                backdropBorderColor = Wow.UnitIsTarget():Map(function(val) return val and Color.WHITE or Color.BLACK end),
+            },
+
             frameStrata         = "HIGH",
             statusBarColor      = Color.MAGE,
 
@@ -174,6 +233,25 @@ Style.UpdateSkin("Default",     {
                     texCoords   = RectType(0.1, 0.9, 0.1, 0.9),
                 }
             },
+        },
+        AuraPanel               = {
+            elementType         = AimAuraPanelIcon,
+            rowCount            = 3,
+            columnCount         = 4,
+            elementWidth        = 18,
+            elementHeight       = 18,
+            orientation         = Orientation.HORIZONTAL,
+            topToBottom         = false,
+            leftToRight         = true,
+            location            = Wow.UnitIsPlayer():Map(function(isPlayer) return isPlayer and AURA_PANEL_PLAYER_LOCATION or AURA_PANEL_NON_PLAYER_LOCATION end),
+
+            auraFilter          = Wow.Unit():Map(function(unit)
+                    return UnitIsUnit("player", unit) and "HELPFUL|INCLUDE_NAME_PLATE_ONLY"
+                        or (UnitReaction("player", unit) or 99) <= 4 and "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY"
+                        or ""
+                    end),
+
+            customFilter        = function(name, icon, count, dtype, duration) return duration and duration > 0 and duration <= 60 end,
         },
     },
 })

@@ -59,11 +59,12 @@ function OnEnable()
 end
 
 function UpdateNamePlateOptions()
+    --[[ @todo support later, maybe just leave it
     _VerticalScale              = tonumber(GetCVar("NamePlateVerticalScale")) or 1
     _HorizontalScale            = tonumber(GetCVar("NamePlateHorizontalScale")) or 1
 
     if _VerticalScale < 1   then _VerticalScale = 1 end
-    if _HorizontalScale < 1 then _HorizontalScale = 1 end
+    if _HorizontalScale < 1 then _HorizontalScale = 1 end--]]
 end
 
 __Async__()
