@@ -200,7 +200,7 @@ Style.UpdateSkin("Default",     {
                 cooldown        = Wow.UnitCastCooldown(),
             },
 
-            FontString          = {
+            Label               = {
                 justifyH        = "CENTER",
                 drawLayer       = "OVERLAY",
                 fontObject      = GameFontHighlight,
@@ -208,7 +208,7 @@ Style.UpdateSkin("Default",     {
                 text            = Wow.UnitCastName(),
             },
 
-            SecondFontString    = {
+            Label2              = {
                 justifyH        = "LEFT",
                 drawLayer       = "OVERLAY",
                 fontObject      = GameFontHighlight,
