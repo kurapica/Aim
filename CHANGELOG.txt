@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2020-12-11
+## [r002] - 2021-01-12
+### Added
+- The totem panel is added.
+
+## [r001] - 2021-01-11
+- r001 is published.
+
+## [a001] - 2020-12-11
 ### Added
 - The Aim is created.

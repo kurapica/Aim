@@ -1,7 +1,7 @@
 ## Interface: 90002
 ## Title: Aim
 ## Author: kurapica125@outlook.com
-## Version: r001
+## Version: r002
 ## Notes: A skin supported name plate
 ## Dependencies: Scorpio.Unit
 ## DefaultState: Enabled

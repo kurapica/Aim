@@ -99,7 +99,7 @@ Style.UpdateSkin("Default",     {
         Label                   = {
             drawLayer           = "OVERLAY",
             fontObject          = NumberFontNormal,
-            location            = { Anchor("BOTTOMRIGHT", -1, 0) },
+            location            = { Anchor("CENTER", 0, 0, nil, "BOTTOMRIGHT") },
             text                = Wow.FromPanelProperty("AuraCount"):Map(function(val) return val and val > 1 and val or "" end),
         },
 
@@ -279,7 +279,7 @@ Style.UpdateSkin("Default",     {
             elementType         = AimTotemPanelIcon,
             elementWidth        = 18,
             elementHeight       = 18,
-            location            = { Anchor("TOP", 0, -4, nil, "BOTTOM") },
+            location            = { Anchor("TOP", 0, -4, "PowerBar", "BOTTOM") },
         },
     },
 })
