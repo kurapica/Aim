@@ -12,7 +12,8 @@ Scorpio           "Aim.Skin.Default"                 "1.0.0"
 -----------------------------------------------------------
 -- Aura Panel Icon
 -----------------------------------------------------------
-class "AimAuraPanelIcon"        { Scorpio.Secure.UnitFrame.AuraPanelIcon }
+__Sealed__() class "AimAuraPanelIcon"   { Scorpio.Secure.UnitFrame.AuraPanelIcon }
+__Sealed__() class "AimTotemPanelIcon"  { Scorpio.Secure.UnitFrame.TotemPanelIcon}
 
 -----------------------------------------------------------
 -- SHARE SETTINGS
@@ -115,6 +116,27 @@ Style.UpdateSkin("Default",     {
         CooldownLabel           = {
             fontObject          = NumberFontNormal,
             cooldown            = Wow.FromPanelProperty("AuraCooldown"),
+        },
+    },
+    [AimTotemPanelIcon]         = {
+        backdrop                = {
+            edgeFile            = [[Interface\Buttons\WHITE8x8]],
+            edgeSize            = BORDER_SIZE,
+        },
+        backdropBorderColor     = Color.WHITE,
+
+        -- Aura Icon
+        IconTexture             = {
+            drawLayer           = "BORDER",
+            location            = { Anchor("TOPLEFT", BORDER_SIZE, -BORDER_SIZE), Anchor("BOTTOMRIGHT", -BORDER_SIZE, BORDER_SIZE) },
+            file                = Wow.FromPanelProperty("TotemIcon"),
+            texCoords           = RectType(0.1, 0.9, 0.1, 0.9),
+        },
+
+        -- Duration
+        CooldownLabel           = {
+            fontObject          = NumberFontNormal,
+            cooldown            = Wow.FromPanelProperty("TotemCooldown"),
         },
     },
 
@@ -252,6 +274,12 @@ Style.UpdateSkin("Default",     {
                     end),
 
             customFilter        = function(name, icon, count, dtype, duration) return duration and duration > 0 and duration <= 60 end,
+        },
+        TotemPanel              = {
+            elementType         = AimTotemPanelIcon,
+            elementWidth        = 18,
+            elementHeight       = 18,
+            location            = { Anchor("TOP", 0, -4, nil, "BOTTOM") },
         },
     },
 })
