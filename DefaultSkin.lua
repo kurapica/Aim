@@ -149,11 +149,11 @@ Style.UpdateSkin("Default",     {
             drawLayer           = "OVERLAY",
             location            = { Anchor("BOTTOM", 0, 4, "HealthBar", "TOP") },
             textColor           = Wow.UnitExtendColor(),
-            visible             = Wow.UnitIsPlayer(false),
+            visible             = Wow.UnitNotPlayer(),
         },
         LevelLabel              = {
             location            = { Anchor("RIGHT", -5, 0, "NameLabel", "LEFT") },
-            visible             = Wow.UnitIsPlayer(false),
+            visible             = Wow.UnitNotPlayer(),
         },
         Label                   = {
             location            = { Anchor("LEFT", 0, 0, "LevelLabel", "RIGHT") },
@@ -268,10 +268,10 @@ Style.UpdateSkin("Default",     {
             location            = Wow.UnitIsPlayer():Map(function(isPlayer) return isPlayer and AURA_PANEL_PLAYER_LOCATION or AURA_PANEL_NON_PLAYER_LOCATION end),
 
             auraFilter          = Wow.Unit():Map(function(unit)
-                    return UnitIsUnit("player", unit) and "HELPFUL|INCLUDE_NAME_PLATE_ONLY"
-                        or (UnitReaction("player", unit) or 99) <= 4 and "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY"
-                        or ""
-                    end),
+                                    return UnitIsUnit("player", unit) and "HELPFUL|INCLUDE_NAME_PLATE_ONLY"
+                                        or (UnitReaction("player", unit) or 99) <= 4 and "HARMFUL|PLAYER|INCLUDE_NAME_PLATE_ONLY"
+                                        or ""
+                                    end),
 
             customFilter        = function(name, icon, count, dtype, duration) return duration and duration > 0 and duration <= 60 end,
         },
