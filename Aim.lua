@@ -76,6 +76,7 @@ function OnNamePlateCreated(self, base)
         if frame and not _Hooked[frame] then
             _Hooked[frame]      = true
             frame:Hide()
+            frame:SetAlpha(0)
             frame:HookScript("OnShow", frame.Hide)
         end
 
