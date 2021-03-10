@@ -94,6 +94,6 @@ end
 
 __SystemEvent__()
 function NAME_PLATE_UNIT_REMOVED(unit)
-    local base = C_NamePlate.GetNamePlateForUnit(unit)
+    local base                  = C_NamePlate.GetNamePlateForUnit(unit)
     NamePlateUnitFrame("AimNamePlate", base).Unit = nil
 end
