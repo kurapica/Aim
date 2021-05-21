@@ -195,9 +195,9 @@ Style.UpdateSkin("Default",     {
 
             location            = { Anchor("BOTTOMLEFT", 4, BORDER_SIZE + 1, "HealthBar", "TOPLEFT"), Anchor("BOTTOMRIGHT", -4, BORDER_SIZE + 1, "HealthBar", "TOPRIGHT") },
         },
-        QuestMark               = {
+        QuestMark               = Scorpio.IsRetail and {
             location            = { Anchor("RIGHT", -2, 0, "HealthBar", "LEFT")}
-        },
+        } or nil,
         RaidTargetIcon          = {
             location            = { Anchor("LEFT", 2, 0, "HealthBar", "RIGHT") }
         },
@@ -283,3 +283,46 @@ Style.UpdateSkin("Default",     {
         },
     },
 })
+
+
+if Scorpio.IsRetail then return end
+
+-----------------------------------------------------------
+-- Player Frame
+-----------------------------------------------------------
+local playerFrame               = NamePlateUnitFrame("AimNamePlatePlayer")
+playerFrame.Unit                = "player"
+
+Style[playerFrame]              = {
+    location                    = { Anchor("BOTTOM", 0, 100) },
+    width                       = 200,
+    alpha                       = Observable(function(observer)
+        Continue(function()
+            observer:OnNext(0)
+
+            local alpha         = 0
+
+            while true do
+                if InCombatLockdown() then
+                    alpha       = 1
+                    observer:OnNext(1)
+                    NextEvent("PLAYER_REGEN_ENABLED")
+                elseif UnitHealth("player") < UnitHealthMax("player") then
+                    alpha       = 1
+                    observer:OnNext(1)
+                    Delay(2)
+                elseif alpha > 0 then
+                    alpha       = alpha - 0.01
+                    observer:OnNext(alpha)
+                    Next()
+                else
+                    local _, u  = Wait("UNIT_HEALTH", "PLAYER_REGEN_DISABLED")
+                    if u == "player" then
+                        alpha   = 1
+                        observer:OnNext(1)
+                    end
+                end
+            end
+        end)
+    end)
+}

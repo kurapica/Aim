@@ -33,27 +33,28 @@ function OnEnable()
         Next()
     end
 
-    -- _G.NamePlateDriverFrame:UnregisterAllEvents()
+    if Scorpio.IsRetail then
+        -- _G.NamePlateDriverFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarRogueDruidFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarWarlockFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarPaladinFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarWindwalkerMonkFrame:UnregisterAllEvents()
+        _G.ClassNameplateBrewmasterBarFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarMageFrame:UnregisterAllEvents()
+        _G.DeathKnightResourceOverlayFrame:UnregisterAllEvents()
 
-    _G.ClassNameplateBarRogueDruidFrame:UnregisterAllEvents()
-    _G.ClassNameplateBarWarlockFrame:UnregisterAllEvents()
-    _G.ClassNameplateBarPaladinFrame:UnregisterAllEvents()
-    _G.ClassNameplateBarWindwalkerMonkFrame:UnregisterAllEvents()
-    _G.ClassNameplateBrewmasterBarFrame:UnregisterAllEvents()
-    _G.ClassNameplateBarMageFrame:UnregisterAllEvents()
-    _G.DeathKnightResourceOverlayFrame:UnregisterAllEvents()
+        _G.ClassNameplateManaBarFrame:UnregisterAllEvents()
+        _G.ClassNameplateManaBarFrame:Hide()
+        _G.NamePlateDriverFrame:SetClassNameplateManaBar(nil)
+        _G.NamePlateDriverFrame:SetClassNameplateBar(nil)
+        --_G.NamePlateTargetResourceFrame:UnregisterAllEvents()
+        --_G.NamePlatePlayerResourceFrame:UnregisterAllEvents()
 
-    _G.ClassNameplateManaBarFrame:UnregisterAllEvents()
-    _G.ClassNameplateManaBarFrame:Hide()
-    _G.NamePlateDriverFrame:SetClassNameplateManaBar(nil)
-    _G.NamePlateDriverFrame:SetClassNameplateBar(nil)
-    --_G.NamePlateTargetResourceFrame:UnregisterAllEvents()
-    --_G.NamePlatePlayerResourceFrame:UnregisterAllEvents()
+        SetCVar("showQuestTrackingTooltips", "1")
+    end
 
     _M:SecureHook(_G.NamePlateDriverFrame, "UpdateNamePlateOptions")
     _M:SecureHook(_G.NamePlateDriverFrame, "OnNamePlateCreated")
-
-    SetCVar("showQuestTrackingTooltips", "1")
 
     UpdateNamePlateOptions()
 end
