@@ -88,7 +88,7 @@ function Wow.UnitIsTaskTarget()
         local player            = UnitName("player")
         local isQuest, isOtherQuest, isFullfiled
 
-        for i, text in Scorpio.GetGameTooltipLines("unit", unit) do
+        for i, text in Scorpio.GetGameTooltipLines("Unit", unit) do
             if i > 2 then
                 if _WorldQuest[text] then
                     local progress = C_TaskQuest.GetQuestProgressBarInfo(_WorldQuest[text])
