@@ -152,7 +152,7 @@ Style.UpdateSkin("Default",     {
             visible             = Wow.UnitNotPlayer(),
         },
         LevelLabel              = {
-            location            = { Anchor("RIGHT", -5, 0, "NameLabel", "LEFT") },
+            location            = { Anchor("RIGHT", -6, 0, "NameLabel", "LEFT") },
             visible             = Wow.UnitNotPlayer(),
         },
         Label                   = {

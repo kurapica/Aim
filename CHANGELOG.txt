@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [r008] - 2021-09-07
+### Modify
+- Fix the Quest Indicator.
+
 ## [r002] - 2021-01-12
 ### Added
 - The totem panel is added.

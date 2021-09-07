@@ -64,9 +64,9 @@ function UpdateQuestLog(forceRefresh)
     wipe(_QuestLog)
 
     for i = 1, C_QuestLog.GetNumQuestLogEntries() do
-        local title, _, _, isHeader = C_QuestLog.GetTitleForLogIndex(i)
-        if not isHeader then
-            _QuestLog[title] = i
+        local questID           = C_QuestLog.GetQuestIDForLogIndex(i) or 0
+        if questID > 0 then
+            _QuestLog[C_QuestLog.GetTitleForLogIndex(i)] = true
         end
     end
 

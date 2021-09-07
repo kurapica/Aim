@@ -1,7 +1,7 @@
-## Interface: 20501
+## Interface: 20502
 ## Title: Aim
 ## Author: kurapica125@outlook.com
-## Version: r007
+## Version: @project-version@
 ## Notes: A skin supported name plate
 ## Dependencies: Scorpio
 ## DefaultState: Enabled

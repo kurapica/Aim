@@ -1,11 +1,15 @@
 ## Interface: 90100
+## Interface-Retail: 90100
+## Interface-Classic: 11307
+## Interface-BCC: 20502
 ## Title: Aim
 ## Author: kurapica125@outlook.com
-## Version: r007
+## Version: @project-version@
 ## Notes: A skin supported name plate
 ## Dependencies: Scorpio
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
+## X-Curse-Project-ID: 255859
 
 # Core
 Aim.lua
