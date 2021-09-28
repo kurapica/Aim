@@ -222,6 +222,13 @@ Style.UpdateSkin("Default",     {
                 cooldown        = Wow.UnitCastCooldown(),
             },
 
+            RightBGTexture      = {
+                file            = [[Interface\CastingBar\UI-CastingBar-Spark]],
+                alphaMode       = "ADD",
+                location        = { Anchor("LEFT", -16, 0, "statusBarTexture", "RIGHT"), Anchor("TOP", 0, 4), Anchor("BOTTOM", 0, -4) },
+                size            = Size(32, 32),
+            },
+
             Label               = {
                 justifyH        = "CENTER",
                 drawLayer       = "OVERLAY",
