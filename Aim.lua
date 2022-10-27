@@ -35,7 +35,8 @@ function OnEnable()
 
     if Scorpio.IsRetail then
         -- _G.NamePlateDriverFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarRogueDruidFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarRogueFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarDruidFrame:UnregisterAllEvents()
         _G.ClassNameplateBarWarlockFrame:UnregisterAllEvents()
         _G.ClassNameplateBarPaladinFrame:UnregisterAllEvents()
         _G.ClassNameplateBarWindwalkerMonkFrame:UnregisterAllEvents()
