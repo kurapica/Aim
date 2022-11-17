@@ -43,6 +43,7 @@ function OnEnable()
         _G.ClassNameplateBrewmasterBarFrame:UnregisterAllEvents()
         _G.ClassNameplateBarMageFrame:UnregisterAllEvents()
         _G.DeathKnightResourceOverlayFrame:UnregisterAllEvents()
+        _G.ClassNameplateBarDracthyrFrame:UnregisterAllEvents()
 
         _G.ClassNameplateManaBarFrame:UnregisterAllEvents()
         _G.ClassNameplateManaBarFrame:Hide()
