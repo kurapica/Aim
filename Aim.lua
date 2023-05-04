@@ -35,15 +35,13 @@ function OnEnable()
 
     if Scorpio.IsRetail then
         -- _G.NamePlateDriverFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarRogueFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarDruidFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarWarlockFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarPaladinFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarWindwalkerMonkFrame:UnregisterAllEvents()
-        _G.ClassNameplateBrewmasterBarFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarMageFrame:UnregisterAllEvents()
+        for k in pairs(_G) do
+            if type(k) == "string" and k:match("^ClassNameplateBar%w+Frame$") then
+                _G[k]:UnregisterAllEvents()
+            end
+        end
+
         _G.DeathKnightResourceOverlayFrame:UnregisterAllEvents()
-        _G.ClassNameplateBarDracthyrFrame:UnregisterAllEvents()
 
         _G.ClassNameplateManaBarFrame:UnregisterAllEvents()
         _G.ClassNameplateManaBarFrame:Hide()
