@@ -62,7 +62,7 @@ AURA_PANEL_ICON_DEBUFF_COLOR    = {
     ["Curse"]                   = Color.CURSE,
     ["Disease"]                 = Color.DISEASE,
     ["Poison"]                  = Color.POISON,
-    [""]                        = DebuffTypeColor["none"],
+    [""]                        = Color.NONEDEBUFF,
 }
 
 -----------------------------------------------------------
@@ -169,7 +169,7 @@ Style.UpdateSkin("Default",     {
             value               = NIL,
             smoothValue         = Wow.UnitHealth(),
             backgroundFrame     = {
-                backdropBorderColor = Wow.UnitIsTarget():Map(function(val) return val and Color.WHITE or  Color.BLACK end),
+                backdropBorderColor = Wow.UnitIsTarget():Map(function(val) return val and Color.WHITE or Color.BLACK end),
             },
         },
         PowerBar                = {
@@ -280,7 +280,9 @@ Style.UpdateSkin("Default",     {
                                         or ""
                                     end),
 
-            customFilter        = function(name, icon, count, dtype, duration) return duration and duration > 0 and duration <= 60 end,
+            customFilter        = not Scorpio.UseSecretValue
+                                and function(name, icon, count, dtype, duration) return duration and duration > 0 and duration <= 60 end
+                                or nil,
         },
         TotemPanel              = {
             elementType         = AimTotemPanelIcon,

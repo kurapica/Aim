@@ -19,7 +19,7 @@ _QuestSubject                   = System.Reactive.Subject()
 -- Addon Event Handler
 -----------------------------------------------------------
 function OnEnable()
-    for _, task in pairs(C_TaskQuest.GetQuestsForPlayerByMapID(MapUtil.GetDisplayableMapForPlayer())) do
+    for _, task in pairs((C_TaskQuest.GetQuestsForPlayerByMapID or C_TaskQuest.GetQuestsOnMap)(MapUtil.GetDisplayableMapForPlayer())) do
         if task.inProgress then
             local name          = C_TaskQuest.GetQuestInfoByQuestID(task.questId)
             if name then _WorldQuest[name] = task.questId end
