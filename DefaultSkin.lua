@@ -85,7 +85,7 @@ Style.UpdateSkin("Default",     {
             edgeFile            = [[Interface\Buttons\WHITE8x8]],
             edgeSize            = BORDER_SIZE,
         },
-        backdropBorderColor     = Wow.FromPanelProperty("AuraDebuff"):Map(function(dtype) return AURA_PANEL_ICON_DEBUFF_COLOR[dtype] or Color.WHITE end),
+        backdropBorderColor     = Wow.UseSecretValue and Wow.FromPanelProperty("AuraColor") or Wow.FromPanelProperty("AuraDebuff"):Map(function(dtype) return AURA_PANEL_ICON_DEBUFF_COLOR[dtype] or Color.WHITE end),
 
         -- Aura Icon
         IconTexture             = {
@@ -115,7 +115,8 @@ Style.UpdateSkin("Default",     {
         -- Duration
         CooldownLabel           = {
             fontObject          = NumberFontNormal,
-            cooldown            = Wow.FromPanelProperty("AuraCooldown"),
+            cooldown            = Wow.UseSecretValue and NIL or Wow.FromPanelProperty("AuraCooldown"),
+            cooldownDurationObject = Wow.UseSecretValue and Wow.FromPanelProperty("AuraDuration") or nil,
         },
     },
     [AimTotemPanelIcon]         = {
@@ -227,6 +228,7 @@ Style.UpdateSkin("Default",     {
                 alphaMode       = "ADD",
                 location        = { Anchor("LEFT", -16, 0, "statusBarTexture", "RIGHT"), Anchor("TOP", 0, 4), Anchor("BOTTOM", 0, -4) },
                 size            = Size(32, 32),
+                visible         = Wow.UnitCasting(),
             },
 
             Label               = {
@@ -290,12 +292,12 @@ Style.UpdateSkin("Default",     {
                                 and function(name, icon, count, dtype, duration) return duration and duration > 0 and duration <= 60 end
                                 or nil,
         },
-        TotemPanel              = {
+        TotemPanel              = not Scorpio.IsRetail and  {
             elementType         = AimTotemPanelIcon,
             elementWidth        = 18,
             elementHeight       = 18,
             location            = { Anchor("TOP", 0, -4, "PowerBar", "BOTTOM") },
-        },
+        } or nil,
     },
 })
 
